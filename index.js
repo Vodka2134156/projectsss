@@ -761,9 +761,9 @@ function getSavedPrice(chatId, tokenAddress) {
       const multiple = (currentPrice / oldPrice).toFixed(2);
       let path 
       if (change>0){
-       path =await generatePnlImage(`$${baseToken.symbol}`,change.toFixed(2),"#6DFE49",'./pnl.png',false,marketCap)}
+       path =await generatePnlImage(`$${baseToken.symbol}`,change.toFixed(2),"#6DFE49",'./pnl.png',false,oldPrice)}
       else{
-         path =await generatePnlImage(`$${baseToken.symbol}`,change.toFixed(2),"#FF2C3A",'./pnl2.png',false,marketCap)
+         path =await generatePnlImage(`$${baseToken.symbol}`,change.toFixed(2),"#FF2C3A",'./pnl2.png',false,oldPrice)
       }
      
       await bot.sendPhoto(chatId,  fs.createReadStream(path), {
