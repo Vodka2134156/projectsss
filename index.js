@@ -789,7 +789,18 @@ function getSavedPrice(chatId, tokenAddress) {
       
   });
 
-
+  bot.on('message', async (msg) => {
+    const chatId = msg.chat.id;
+    const text = msg.text;
+    if (!text) return;
+  
+    // Cherche un mot qui commence par $ et capture ce qui suit
+    const match = text.match(/\$([a-zA-Z0-9_]+)/);
+    if (match) {
+      const ticker = match[1]; // le texte après $
+      await sendTokenInfoByAddress(ticker, chatId, bot);
+    }
+  });
 
 
 bot.on('message', async (msg) => {
